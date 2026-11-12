@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="assets/icon.png" width="112" alt="saas-growth-agents">
+<img src="assets/icon.png" width="112" alt="auto-newmedia-agents">
 
-# saas-growth-agents
+# auto-newmedia-agents
 
 ### 出海 SaaS 的增长重复活，交给 Agent 每天跑。
 
@@ -10,7 +10,7 @@
 这些活每天都要做、步骤固定，最适合固化成 SOP 交给 Agent。<br>
 新建一个 Bot，发一句话，它会读这个仓库、问你几个问题，然后把自己装好。
 
-[![Stars](https://img.shields.io/github/stars/Pluviobyte/saas-growth-agents?style=flat&color=111111&cacheSeconds=3600)](https://github.com/Pluviobyte/saas-growth-agents/stargazers) [![License](https://img.shields.io/badge/license-MIT-111111)](LICENSE) [![Python](https://img.shields.io/badge/python_3-stdlib_only-111111?logo=python&logoColor=white)](lib/aisa/client.py) [![Data](https://img.shields.io/badge/data-AIsa-F26B1D)](https://go.aisa.one/rain)<br>
+[![Stars](https://img.shields.io/github/stars/mingginwan/auto-newmedia-agents?style=flat&color=111111&cacheSeconds=3600)](https://github.com/mingginwan/auto-newmedia-agents/stargazers) [![License](https://img.shields.io/badge/license-MIT-111111)](LICENSE) [![Python](https://img.shields.io/badge/python_3-stdlib_only-111111?logo=python&logoColor=white)](lib/aisa/client.py) [![Data](https://img.shields.io/badge/data-AIsa-F26B1D)](https://go.aisa.one/rain)<br>
 [![Grok Bot](https://img.shields.io/badge/Grok_Bot-推荐-000000?logo=x&logoColor=white)](https://grok.com/refer/bot?code=NASHTX8NMYH3) ![Muse](https://img.shields.io/badge/Muse-333333) ![Dot](https://img.shields.io/badge/Dot-333333) ![Hermes](https://img.shields.io/badge/Hermes-333333) ![OpenClaw](https://img.shields.io/badge/OpenClaw-333333) ![Claude Code](https://img.shields.io/badge/Claude_Code-D97757?logo=claude&logoColor=white) ![Codex](https://img.shields.io/badge/Codex-111111)
 
 **[三分钟上手](#三分钟上手)** &nbsp;·&nbsp; **[三个 Bot](#三个-bot)** &nbsp;·&nbsp; **[发给 Bot 的一句话](bootstrap.md)** &nbsp;·&nbsp; **[AGENTS.md](AGENTS.md)** &nbsp;·&nbsp; **[Grok Bot 免费 14 天](https://grok.com/refer/bot?code=NASHTX8NMYH3)** &nbsp;·&nbsp; [English](README.md) · **简体中文**
@@ -38,11 +38,14 @@
 
 ## 三个 Bot
 
+> **本 Fork 新增：** [`bots/auto-topic-monitor/`](bots/auto-topic-monitor/README.md) 汽车选题监控，把新词监控和社媒分析的 SOP 改成了汽车新媒体每天找选题、拆爆款、存知识库的流程。
+
 | Bot | 你做什么 | 它做什么 |
 |---|---|---|
 | [新词监控](bots/newterm/job.md) | 什么都不用做 | 每天早中晚三次播报新出现、可被搜索的词：AI 新产品、新模型、新梗、新模板。词源包括 Google Trends、竞品 sitemap、导航站新上架、Product Hunt、GitHub Trending、Reddit、TikTok |
 | [出海站点运营](bots/site-ops/job.md) | 给词、给产品 | 按词找出所有在抢这个词的站，查它们的 DR 和外链，每天盯自有站指标，按规则提交免费导航站，全部记台账 |
 | [社媒分析包](bots/social-kb/README.zh-CN.md) | 刷到好内容，丢一个链接 | 取原文（X、抖音、小红书、YouTube、公众号、网页）→ 整理 → 对照你的工作流提取「能改进你 SOP 的部分」→ 按主题存进知识库；抖音还能抓完整评论区，看用户都在问什么 |
+| [汽车选题监控](bots/auto-topic-monitor/README.md) | 什么都不用做（可选：给品牌和价位带） | 每天早中晚三次播报汽车行业值得拍的新鲜事：新车、竞品动作、政策、用户声音、爆款内容。按 A/B/C 分级，维护选题台账，把对标内容拆解归档进知识库 |
 
 另外附带一个和出海无关的 [交易雷达](extras/trade-radar/job.md)：盯价格异动和突发事件，分析后推送，**只分析、不下单**。
 
@@ -61,7 +64,7 @@
 2. 把 [bootstrap.md](bootstrap.md) 里对应的那句话发给它，比如：
 
    ```text
-   读 https://github.com/Pluviobyte/saas-growth-agents 的 AGENTS.md，按它把你自己装成 newterm（新词监控）Bot。一次只问我一个问题。
+   读 https://github.com/mingginwan/auto-newmedia-agents 的 AGENTS.md，按它把你自己装成 newterm（新词监控）Bot。一次只问我一个问题。
    ```
 
 3. 它会请你把 [AIsa](https://go.aisa.one/rain) 的 Key 放进保险库，然后手动跑一遍给你看，你满意了它再设成例程。
@@ -91,7 +94,7 @@
 ## 仓库结构
 
 ```
-saas-growth-agents/
+auto-newmedia-agents/
 ├── AGENTS.md               给 Agent 的安装步骤
 ├── bootstrap.md            发给 Bot 的一句话
 ├── lib/aisa/               AIsa 调用层：client.py（标准库）、sources.py（各数据源）、aisa_cli.py（命令行）
@@ -99,7 +102,8 @@ saas-growth-agents/
 ├── bots/
 │   ├── newterm/            新词监控：job.md · routines.md · check.md · pipeline/ · skills/ · install.sh
 │   ├── site-ops/           出海站点运营：job.md · routines.md · check.md · scripts/ · skills/
-│   └── social-kb/          社媒分析包：README.zh-CN.md · job.md · routines.md · check.md · scripts/ · douyin-comments/
+│   ├── social-kb/          社媒分析包：README.zh-CN.md · job.md · routines.md · check.md · scripts/ · douyin-comments/
+│   └── auto-topic-monitor/ 汽车选题监控：README.md · job.md · routines.md · check.md · skills/ · templates/
 ├── extras/trade-radar/     交易雷达（附带）
 ├── skills/agent-setup/     给 Claude Code / Codex 用：问清需求，生成发给 Bot 的定制安装消息
 ├── templates/              账本格式
@@ -111,7 +115,7 @@ saas-growth-agents/
 ## 不用 Key 先试一下
 
 ```bash
-git clone https://github.com/Pluviobyte/saas-growth-agents.git && cd saas-growth-agents
+git clone https://github.com/mingginwan/auto-newmedia-agents.git && cd auto-newmedia-agents
 python3 tests/test_dry_run.py                                        # 全部演练
 AISA_DRY_RUN=1 python3 bots/site-ops/scripts/serp_sites.py "ai video generator"
 ```

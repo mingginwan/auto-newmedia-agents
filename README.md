@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="assets/icon.png" width="112" alt="saas-growth-agents">
+<img src="assets/icon.png" width="112" alt="auto-newmedia-agents">
 
-# saas-growth-agents
+# auto-newmedia-agents
 
 ### Hand your SaaS growth chores to an agent that runs them every day.
 
@@ -10,7 +10,7 @@
 These jobs repeat daily and follow fixed steps, which makes them perfect SOPs for an agent.<br>
 Create a bot, send it one sentence, and it reads this repo, asks you a few questions, and sets itself up.
 
-[![Stars](https://img.shields.io/github/stars/Pluviobyte/saas-growth-agents?style=flat&color=111111&cacheSeconds=3600)](https://github.com/Pluviobyte/saas-growth-agents/stargazers) [![License](https://img.shields.io/badge/license-MIT-111111)](LICENSE) [![Python](https://img.shields.io/badge/python_3-stdlib_only-111111?logo=python&logoColor=white)](lib/aisa/client.py) [![Data](https://img.shields.io/badge/data-AIsa-F26B1D)](https://go.aisa.one/rain)<br>
+[![Stars](https://img.shields.io/github/stars/mingginwan/auto-newmedia-agents?style=flat&color=111111&cacheSeconds=3600)](https://github.com/mingginwan/auto-newmedia-agents/stargazers) [![License](https://img.shields.io/badge/license-MIT-111111)](LICENSE) [![Python](https://img.shields.io/badge/python_3-stdlib_only-111111?logo=python&logoColor=white)](lib/aisa/client.py) [![Data](https://img.shields.io/badge/data-AIsa-F26B1D)](https://go.aisa.one/rain)<br>
 [![Grok Bot](https://img.shields.io/badge/Grok_Bot-recommended-000000?logo=x&logoColor=white)](https://grok.com/refer/bot?code=NASHTX8NMYH3) ![Muse](https://img.shields.io/badge/Muse-333333) ![Dot](https://img.shields.io/badge/Dot-333333) ![Hermes](https://img.shields.io/badge/Hermes-333333) ![OpenClaw](https://img.shields.io/badge/OpenClaw-333333) ![Claude Code](https://img.shields.io/badge/Claude_Code-D97757?logo=claude&logoColor=white) ![Codex](https://img.shields.io/badge/Codex-111111)
 
 **[Quick start](#quick-start)** &nbsp;·&nbsp; **[The bots](#the-bots)** &nbsp;·&nbsp; **[One-line setup](bootstrap.md)** &nbsp;·&nbsp; **[AGENTS.md](AGENTS.md)** &nbsp;·&nbsp; **[Grok Bot free for 14 days](https://grok.com/refer/bot?code=NASHTX8NMYH3)** &nbsp;·&nbsp; **English** · [简体中文](README.zh-CN.md)
@@ -38,11 +38,14 @@ These are the SOPs and scripts the author runs for their own SaaS tools aimed at
 
 ## The bots
 
+> **Fork addition:** this fork adds an automotive topic monitor at [`bots/auto-topic-monitor/`](bots/auto-topic-monitor/README.md). It adapts the new-term radar and social analysis SOPs to Chinese automotive new-media topic selection.
+
 | Bot | What you do | What it does |
 |---|---|---|
 | [New-term radar](bots/newterm/job.md) | Nothing | Three reports a day on newly searchable terms: new AI products, models, memes, templates. Sources include Google Trends, competitor sitemaps, new directory listings, Product Hunt, GitHub Trending, Reddit and TikTok |
 | [Site ops](bots/site-ops/job.md) | Give it keywords and your product | Finds every site competing for a keyword, checks their DR and backlinks, tracks your own site's metrics daily, submits to free directories by the rules, and logs everything |
 | [Social analysis pack](bots/social-kb/README.md) | Drop a link when you see something good | Fetches the original (X, Douyin, RedNote, YouTube, WeChat, any web page) → summarizes → extracts "what could improve your SOPs" against your own workflow → files it by topic. For Douyin it can also pull the full comment section |
+| [Automotive topic monitor](bots/auto-topic-monitor/README.md) | Nothing (or your brand and price band) | Three reports a day on what's worth filming in the Chinese auto market: new models, competitor moves, policy, owner complaints, and viral content. Grades A/B/C, keeps a topic ledger, and files reference content into a knowledge base |
 
 Plus an unrelated extra, [Trade radar](extras/trade-radar/job.md): watches price moves and breaking events and pushes an analysis. **It analyzes only and never places orders.**
 
@@ -61,7 +64,7 @@ Plus an unrelated extra, [Trade radar](extras/trade-radar/job.md): watches price
 2. Send it the matching sentence from [bootstrap.md](bootstrap.md), for example:
 
    ```text
-   Read AGENTS.md in https://github.com/Pluviobyte/saas-growth-agents and set yourself up as the newterm (new-term radar) bot. Ask me one question at a time.
+   Read AGENTS.md in https://github.com/mingginwan/auto-newmedia-agents and set yourself up as the newterm (new-term radar) bot. Ask me one question at a time.
    ```
 
 3. It asks you to put your [AIsa](https://go.aisa.one/rain) key in its vault, does one run by hand to show you, and only turns it into a routine once you're happy.
@@ -104,7 +107,7 @@ A nightly health check lists failed, stuck and missed runs, plus cost spikes.
 ## Repo layout
 
 ```
-saas-growth-agents/
+auto-newmedia-agents/
 ├── AGENTS.md               setup steps for the agent
 ├── bootstrap.md            the one sentence to send your bot
 ├── lib/aisa/               AIsa layer: client.py (stdlib), sources.py (data sources), aisa_cli.py (CLI)
@@ -112,7 +115,8 @@ saas-growth-agents/
 ├── bots/
 │   ├── newterm/            new-term radar: job.md · routines.md · check.md · pipeline/ · skills/ · install.sh
 │   ├── site-ops/           site ops: job.md · routines.md · check.md · scripts/ · skills/
-│   └── social-kb/          social analysis pack: README.md · job.md · routines.md · check.md · scripts/ · douyin-comments/
+│   ├── social-kb/          social analysis pack: README.md · job.md · routines.md · check.md · scripts/ · douyin-comments/
+│   └── auto-topic-monitor/ automotive topic monitor: README.md · job.md · routines.md · check.md · skills/ · templates/
 ├── extras/trade-radar/     trade radar (extra)
 ├── skills/agent-setup/     for Claude Code / Codex: asks what you need and writes a tailored setup message for your bot
 ├── templates/              ledger formats
@@ -124,7 +128,7 @@ Every bot folder has the same shape: `job.md` is the job description, `routines.
 ## Try it without a key
 
 ```bash
-git clone https://github.com/Pluviobyte/saas-growth-agents.git && cd saas-growth-agents
+git clone https://github.com/mingginwan/auto-newmedia-agents.git && cd auto-newmedia-agents
 python3 tests/test_dry_run.py                                        # full dry run
 AISA_DRY_RUN=1 python3 bots/site-ops/scripts/serp_sites.py "ai video generator"
 ```

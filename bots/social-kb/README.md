@@ -12,7 +12,7 @@
 Install it like the other bots by sending this to your agent:
 
 ```text
-Read AGENTS.md in https://github.com/Pluviobyte/saas-growth-agents and set yourself up as the social-kb (social analysis) bot. Ask me one question at a time.
+Read AGENTS.md in https://github.com/mingginwan/auto-newmedia-agents and set yourself up as the social-kb (social analysis) bot. Ask me one question at a time.
 ```
 
 ## What it does
@@ -79,8 +79,8 @@ Requests are spaced 2–4 seconds apart, with an extra 8–15 second pause every
 You need Claude Code connected to the Claude in Chrome extension (run `/chrome` in Claude Code), Chrome logged in to Douyin, Python 3 and curl.
 
 ```sh
-git clone https://github.com/Pluviobyte/saas-growth-agents.git ~/saas-growth-agents
-ln -s ~/saas-growth-agents/bots/social-kb/douyin-comments ~/.claude/skills/douyin-comments
+git clone https://github.com/mingginwan/auto-newmedia-agents.git ~/auto-newmedia-agents
+ln -s ~/auto-newmedia-agents/bots/social-kb/douyin-comments ~/.claude/skills/douyin-comments
 ```
 
 If `~/.claude/skills/douyin-comments` already exists, check what's in it before replacing it. Then give Claude Code a Douyin video link and ask for the comments:

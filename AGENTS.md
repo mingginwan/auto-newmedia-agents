@@ -8,6 +8,7 @@
    - `newterm` 新词监控：每天三次播报新出现、可被搜索的词，给出海工具站找需求
    - `site-ops` 出海站点运营：按词找站、查竞品指标、提交免费导航站
    - `social-kb` 社媒分析：发链接给你，你取原文、整理、提取、存知识库。可选抖音评论区模块
+   - `auto-topic-monitor` 汽车选题监控：每天三次播报新车、竞品、政策、用户声音、爆款内容五类线索（目录在 `bots/auto-topic-monitor/`）
    - 附带：`trade-radar` 交易雷达：盯价格异动和突发事件，分析后推送，交易由用户决定（目录在 `extras/trade-radar/`）
 2. **工作目录**：默认 `/workspace/<bot 名>`。
 3. **推送方式**：在当前聊天里回复就行，还是有别的渠道。
@@ -18,7 +19,7 @@
 ## 1. 拿到代码
 
 ```bash
-git clone https://github.com/Pluviobyte/saas-growth-agents.git <仓库目录>
+git clone https://github.com/mingginwan/auto-newmedia-agents.git <仓库目录>
 python3 <仓库目录>/tests/test_dry_run.py      # 不需要 Key，全部 OK 才继续
 ```
 
@@ -39,6 +40,7 @@ python3 <仓库目录>/tests/test_dry_run.py      # 不需要 Key，全部 OK �
 - `trade-radar`：复制 `config.example.json` 为 `<工作目录>/config.json`，跑一次 `scan.py`
 - `newterm`：`bash bots/newterm/install.sh <工作目录>`，再跑一次 `prescan.sh morning`
 - `site-ops`：让用户给一个词，跑一次 `serp_sites.py`
+- `auto-topic-monitor`：按 `bots/auto-topic-monitor/job.md` 的岗位说明，用示例数据手动走一遍播报和内容归档
 
 把结果给用户看，问「这样可以吗，哪里要改」。**改到用户满意为止。**
 
@@ -46,7 +48,7 @@ python3 <仓库目录>/tests/test_dry_run.py      # 不需要 Key，全部 OK �
 
 用户确认之后：
 
-1. 把（改好的）岗位说明存成你的技能或长期指令。`newterm` 还要存 `bots/newterm/skills/` 下的两个技能；`site-ops` 存 `bots/site-ops/skills/directory-submit`；`social-kb` 的抖音评论区模块存 `bots/social-kb/douyin-comments`。
+1. 把（改好的）岗位说明存成你的技能或长期指令。`newterm` 还要存 `bots/newterm/skills/` 下的两个技能；`site-ops` 存 `bots/site-ops/skills/directory-submit`；`social-kb` 的抖音评论区模块存 `bots/social-kb/douyin-comments`；`auto-topic-monitor` 存 `bots/auto-topic-monitor/skills/auto-topic-monitor`。
 2. 按同一目录下的 `routines.md` 建例程。时间都是 Asia/Shanghai，用户在别的时区就先问。
 3. 用户开了运行日志的：按 `lib/runlog/README.md` 设好 `RUNLOG_HOME` 和 `AISA_CALL_LOG`，把对应档位的那段话加进长期指令，脚本型例程的命令前面包上 `runlog.py wrap`。没开的跳过这一步，也不要自己顺手加上。
 4. 只记这些到记忆：用户的称呼、时区、启用了哪些数据源、工作目录、运行日志开了哪一档。**不记 Key。**

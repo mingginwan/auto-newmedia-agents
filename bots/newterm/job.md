@@ -9,8 +9,8 @@
 在 Bot 的云电脑里：
 
 ```bash
-git clone https://github.com/Pluviobyte/saas-growth-agents.git
-bash saas-growth-agents/bots/newterm/install.sh /workspace/newterm
+git clone https://github.com/mingginwan/auto-newmedia-agents.git
+bash auto-newmedia-agents/bots/newterm/install.sh /workspace/newterm
 ```
 
 然后把 Key 从保险库写进 `/workspace/newterm/.env`。必填 `AISA_API_KEY`，其余可选：

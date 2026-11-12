@@ -1,7 +1,7 @@
 ---
 name: agent-setup
 description: >-
-  帮用户在自己的 Agent（Grok Bot、Muse、Dot、Hermes、OpenClaw 等）里装好 saas-growth-agents 的某个 Bot：
+  帮用户在自己的 Agent（Grok Bot、Muse、Dot、Hermes、OpenClaw 等）里装好 auto-newmedia-agents 的某个 Bot：
   新词监控、出海站点运营、社媒分析，或附带的交易雷达。先问清需求，在本地用演练模式和免费的余额查询验证，
   再生成一段定制好的安装消息让用户发给 Bot。用户说「帮我配一个出海运营 Bot」「帮我配一个 Grok Bot」「把交易雷达装到我的 Bot」
   「生成发给 Bot 的安装话术」时使用。
@@ -26,14 +26,14 @@ description: >-
 ## 2. 本地验证（不花钱）
 
 ```bash
-git clone https://github.com/Pluviobyte/saas-growth-agents.git /tmp/saas-growth-agents
-python3 /tmp/saas-growth-agents/tests/test_dry_run.py
+git clone https://github.com/mingginwan/auto-newmedia-agents.git /tmp/auto-newmedia-agents
+python3 /tmp/auto-newmedia-agents/tests/test_dry_run.py
 ```
 
 用户愿意的话，请他把 Key 设进当前终端的环境变量（不要贴进聊天），再跑免费的余额查询：
 
 ```bash
-python3 /tmp/saas-growth-agents/lib/aisa/aisa_cli.py balance
+python3 /tmp/auto-newmedia-agents/lib/aisa/aisa_cli.py balance
 ```
 
 `trade-radar` 可以把用户的观察列表写进一份 `config.json`，用 `AISA_DRY_RUN=1` 跑一次 `scan.py` 确认格式没错。
@@ -43,7 +43,7 @@ python3 /tmp/saas-growth-agents/lib/aisa/aisa_cli.py balance
 模板：
 
 ```text
-读 https://github.com/Pluviobyte/saas-growth-agents 的 AGENTS.md，按它把你自己装成 <bot>（<中文名>）Bot。
+读 https://github.com/mingginwan/auto-newmedia-agents 的 AGENTS.md，按它把你自己装成 <bot>（<中文名>）Bot。
 一次只问我一个问题。下面这些我已经想好了，直接用，不用再问：
 - 工作目录：/workspace/<bot>
 - <个性化内容，逐条列出>

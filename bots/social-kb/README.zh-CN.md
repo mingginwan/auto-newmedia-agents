@@ -12,7 +12,7 @@
 装法和其他 Bot 一样：把这句话发给你的 Agent。
 
 ```text
-读 https://github.com/Pluviobyte/saas-growth-agents 的 AGENTS.md，按它把你自己装成 social-kb（社媒分析）Bot。一次只问我一个问题。
+读 https://github.com/mingginwan/auto-newmedia-agents 的 AGENTS.md，按它把你自己装成 social-kb（社媒分析）Bot。一次只问我一个问题。
 ```
 
 ## 它做什么
@@ -79,8 +79,8 @@
 需要 Claude Code 连接 Claude in Chrome 扩展（在 Claude Code 里执行 `/chrome`）、已登录抖音的 Chrome、Python 3 和 curl。
 
 ```sh
-git clone https://github.com/Pluviobyte/saas-growth-agents.git ~/saas-growth-agents
-ln -s ~/saas-growth-agents/bots/social-kb/douyin-comments ~/.claude/skills/douyin-comments
+git clone https://github.com/mingginwan/auto-newmedia-agents.git ~/auto-newmedia-agents
+ln -s ~/auto-newmedia-agents/bots/social-kb/douyin-comments ~/.claude/skills/douyin-comments
 ```
 
 如果 `~/.claude/skills/douyin-comments` 已存在，先检查里面的内容，不要直接覆盖。然后在 Claude Code 里给一个抖音视频链接，并说明要抓评论：
