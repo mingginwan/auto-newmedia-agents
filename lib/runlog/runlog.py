@@ -15,7 +15,7 @@
   approvals.jsonl     审批记录，永久保留
   rules-changelog.md  规则变更，永久保留
   archive/            prune 压缩出去的旧记录
-花费：读 AISA_CALL_LOG（默认 RUNLOG_HOME/aisa-calls.log）里这次运行起止时间之间的调用。
+花费：读 API_CALL_LOG（默认 RUNLOG_HOME/api-calls.log）里这次运行起止时间之间的调用。
 写入前统一打码：Key、Token、Cookie、密码之类一律换成 ***。只用标准库。
 """
 from __future__ import annotations
@@ -95,11 +95,11 @@ def _ts(s: str) -> dt.datetime:
 
 
 def call_log() -> Path:
-    return Path(os.environ.get('AISA_CALL_LOG') or HOME / 'aisa-calls.log')
+    return Path(os.environ.get('API_CALL_LOG') or HOME / 'api-calls.log')
 
 
-def aisa_cost(start: dt.datetime, end: dt.datetime) -> tuple[int, float]:
-    """AISA_CALL_LOG 里 [start, end] 之间的调用次数和花费（美元）。同时段有别的例程在跑会算在一起。"""
+def api_cost(start: dt.datetime, end: dt.datetime) -> tuple[int, float]:
+    """API_CALL_LOG 里 [start, end] 之间的调用次数和花费（美元）。同时段有别的例程在跑会算在一起。"""
     f = call_log()
     if not f.exists():
         return 0, 0.0
@@ -158,10 +158,10 @@ def end(run_id: str, status: str, outputs=None, pushed=False, sources=None, erro
         raise SystemExit(f'找不到 {run_id} 的开始记录（先用 start 或 wrap）')
     t = now()
     t0 = _ts(s['start'])
-    calls, cost = aisa_cost(t0, t)
+    calls, cost = api_cost(t0, t)
     rec = {'run_id': run_id, 'routine': s['routine'], 'status': status, 'start': s['start'],
            'end': t.isoformat(timespec='seconds'), 'secs': round((t - t0).total_seconds()),
-           'aisa_calls': calls, 'cost_usd': cost, 'outputs': outputs, 'pushed': bool(pushed)}
+           'api_calls': calls, 'cost_usd': cost, 'outputs': outputs, 'pushed': bool(pushed)}
     if sources:
         rec['sources'] = sources
     if error:
@@ -173,7 +173,7 @@ def end(run_id: str, status: str, outputs=None, pushed=False, sources=None, erro
 
 
 def wrap(routine: str, cmd: list[str]) -> int:
-    os.environ.setdefault('AISA_CALL_LOG', str(call_log().resolve()))
+    os.environ.setdefault('API_CALL_LOG', str(call_log().resolve()))
     HOME.mkdir(parents=True, exist_ok=True)
     rec = start(routine)
     tail = collections.deque(maxlen=12)
@@ -264,7 +264,7 @@ def prune(keep_days: int = 90) -> dict:
             (old[f'{t:%Y-%m}'] if t < cutoff else keep).append(line)
         for month, lines in old.items():
             ARCHIVE.mkdir(parents=True, exist_ok=True)
-            with gzip.open(ARCHIVE / f'aisa-calls-{month}.log.gz', 'at', encoding='utf-8') as f:
+            with gzip.open(ARCHIVE / f'api-calls-{month}.log.gz', 'at', encoding='utf-8') as f:
                 f.write('\n'.join(lines) + '\n')
             moved['calls'] += len(lines)
         cl.write_text(''.join(l + '\n' for l in keep), encoding='utf-8')
