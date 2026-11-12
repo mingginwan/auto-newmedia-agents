@@ -1,84 +1,169 @@
 <div align="center">
 
-<img src="assets/icon.png" width="112" alt="auto-newmedia-agents">
+<img src="assets/icon.png" width="112" alt="汽车选题监控">
 
-# auto-newmedia-agents
+# 汽车选题监控
 
-### Daily automotive new-media topic monitoring, run by an agent.
+### 每天的新车、竞品、政策、用户声音、爆款内容，交给 Agent 盯。
 
-**Track new models, competitor moves, policy, owner complaints and viral content in five daily sweeps; drop in a link and get it broken down and filed into a knowledge base.**<br>
-These jobs repeat daily and follow fixed steps, which makes them perfect SOPs for an agent.<br>
-Create a bot, send it one sentence, and it reads this repo, asks you a few questions, and sets itself up.
+**三次分级播报 · 选题台账 · 爆款拆解归档**<br>
+不需要 API Key，用公开网页和你已登录的浏览器就能跑。
 
 [![Stars](https://img.shields.io/github/stars/mingginwan/auto-newmedia-agents?style=flat&color=111111&cacheSeconds=3600)](https://github.com/mingginwan/auto-newmedia-agents/stargazers) [![License](https://img.shields.io/badge/license-MIT-111111)](LICENSE)
 
-**[Quick start](#quick-start)** &nbsp;·&nbsp; **[The bot](#the-bot)** &nbsp;·&nbsp; **[One-line setup](bootstrap.md)** &nbsp;·&nbsp; **[AGENTS.md](AGENTS.md)** &nbsp;·&nbsp; **English** · [简体中文](README.zh-CN.md)
+**[三分钟上手](#三分钟上手)** &nbsp;·&nbsp; **[它能干什么](#它能干什么)** &nbsp;·&nbsp; **[一天怎么跑](#一天怎么跑)** &nbsp;·&nbsp; **[仓库结构](#仓库结构)** &nbsp;·&nbsp; **[常见问题](#常见问题)** &nbsp;·&nbsp; **[AGENTS.md](AGENTS.md)**
 
 </div>
 
 <br>
 
-This repo is a working SOP and skill pack for Chinese automotive new-media teams. It turns the daily topic meeting into an agent routine: collect signals, grade them A/B/C, push a phone-friendly report, keep a topic ledger, and file reference content into a knowledge base.
+## 这是什么
 
-**The whole system runs on three rules:**
+这是一套给汽车新媒体团队用的「选题监控」岗位模板：一份 SOP、两张技能卡和一套模板。
 
-1. **Scripts do the deterministic work**: collecting, deduping, scoring and logging. Results are reproducible and replayable, never a model's "feeling".
-2. **The agent judges**: it reads what the scripts produce, then analyzes, extracts, verifies and reports. If data is missing it says so instead of making things up.
-3. **You decide**: the agent only pushes conclusions. Spending money, sending anything out and deleting all need your OK. Every correction you make becomes a new rule in its skills.
+它把每天选题会之前最耗时的三件事交给 Agent：
 
-## The bot
+1. **看今天有什么新鲜事**：新车、竞品、政策、用户声音、爆款内容
+2. **判断哪条值得拍**：按 A/B/C 分级，给出理由和可拍角度
+3. **把刷到的对标内容拆开**：按七要素拆解，存进知识库
 
-| Bot | What you do | What it does |
+它只做发现、整理、起草；拍什么、怎么拍、发不发、投不投，由你决定。
+
+## 它能干什么
+
+### 每天三次播报
+
+| 时间 | 做什么 |
+|---|---|
+| **08:30 早报** | 选题会前，发当天值得拍的 A/B 级线索 |
+| **12:30 午报** | 只报上午新增，没有就不发 |
+| **17:00 晚报** | 汇总当天全部，定次日选题 |
+
+每条播报都带：热度、来源、是什么、为什么现在拍、可拍角度、风险、链接。
+
+### 五类线索
+
+| 类型 | 看哪里 | 什么情况进播报 |
 |---|---|---|
-| [Automotive topic monitor](bots/auto-topic-monitor/README.md) | Nothing (or your brand and price band) | Three reports a day on what's worth filming in the Chinese auto market: new models, competitor moves, policy, owner complaints, and viral content. Grades A/B/C, keeps a topic ledger, and files reference content into a knowledge base. Uses public web pages and your logged-in browser; no API key required. |
+| **① 新车/改款** | 工信部新车申报目录、品牌官网新车页、汽车之家、懂车帝、易车 | 首见即报，不看热度 |
+| **② 竞品动作** | 竞品官网促销页、竞品门店抖音号/视频号、汽车之家降价频道 | 官方发布首见即报；门店内容互动 ≥ 基线 ×2 |
+| **③ 政策/行业** | 工信部、商务部、财政部、税务总局、中汽协/乘联会、地方车管所 | 首见即报，标注影响车型和地区 |
+| **④ 用户声音** | 车质网、黑猫投诉、抖音/小红书评论区、车主论坛 | 同一问题 ≥3 条独立提及，或投诉量周环比 +50% |
+| **⑤ 爆款内容** | 对标账号近 7 天新发、抖音/小红书汽车话题、企业号视频榜单 | 互动 ≥ 账号近 30 天中位数 ×2 |
 
-## Which agent
+### 选题分 A/B/C
 
-Any agent that can run terminal commands and keep long-lived instructions works: Grok Bot, Muse, Dot, Hermes, OpenClaw, Claude Code, Codex. See [AGENTS.md](AGENTS.md) for the generic steps; each product has its own name for "routines" (scheduled tasks) and "vault" (secret storage).
+| 级别 | 定义 | 处理方式 |
+|---|---|---|
+| **A 级** | 当天必须知道，直接影响销售话术 | 当天进选题会，24 小时内定 |
+| **B 级** | 值得跟，3 天内可拍 | 进选题池，3 天内排期 |
+| **C 级** | 早期信号，先观察 | 进观察池，每周捞一次 |
 
-## Quick start
+分级看两条：是否影响成交话术；是否有可拍素材（图、视频、实车）。
 
-1. Create a new bot in your agent.
-2. Send it the matching sentence from [bootstrap.md](bootstrap.md), for example:
+### 热度用「基线 ×N」
+
+```
+热度 = 当前内容互动量 ÷ 同平台同类型内容近 30 天中位数
+```
+
+- 抖音只和抖音比，小红书只和小红书比
+- 车型讲解和车型讲解比，剧情段子和剧情段子比
+- 起步阈值：A 级 ≥3×、B 级 ≥2×、C 级 ≥1.5×，跑两周后按自己账号校准
+- 新车申报、官降、政策、召回这类一手源首见即报，不看热度
+
+### 内容归档
+
+刷到好内容，把链接发过来，Agent 按六步处理：
+
+1. **查重**：收过的直接回「已经收过」+ 当时主题
+2. **取原文**：抖音用自带技能抓标题、简介、评论区；网页用抓取；拿不到就如实说
+3. **结构化拆解**：按「脚本七要素」——视频类型、开头爆点、中间产品阐述、末尾转化设计、人物风格、配音配乐、环境布局
+4. **对照现有工作流**：哪些已在做 / 哪些值得做 / 哪些无关
+5. **入库**：按主题写进 `kb/<主题>.md`
+6. **回复**：一句话总结 + 值得做的建议
+
+## 三分钟上手
+
+1. 在你的 Agent 里新建一个 Bot（Grok Bot、Muse、Dot、Hermes、OpenClaw、Claude Code、Codex 都行）。
+2. 把这句话发给它：
 
    ```text
-   Read AGENTS.md in https://github.com/mingginwan/auto-newmedia-agents and set yourself up as the auto-topic-monitor (automotive topic monitor) bot. Ask me one question at a time.
+   读 https://github.com/mingginwan/auto-newmedia-agents 的 AGENTS.md，按它把你自己装成 auto-topic-monitor（汽车选题监控）Bot。一次只问我一个问题。
    ```
 
-3. It asks a few questions, does one run by hand to show you, and only turns it into a routine once you're happy.
+3. 它会问你品牌、价位带、常看平台、播报时间，然后手动跑一遍给你看；你满意了，它再设成例程。
 
-The whole process is **do it once → tweak until it's right → save as a skill → schedule as a routine**.
+整个过程就是「**做一次 → 改到满意 → 存成技能 → 设成例程**」。
 
-The job descriptions and SOP docs inside the repo are written in Chinese. Agents read them fine, and the bot will talk to you in your language.
+不需要 API Key。抖音、小红书用你自己已登录的浏览器。
 
-## What's inside
+## 一天怎么跑
+
+```
+07:30  预跑采集（不打扰人）
+08:30  早报 → 选题会
+11:30  午间补采
+12:30  午报（只报新增）
+16:00  晚间补采
+17:00  晚报 → 定次日选题
+周日 20:00  周报 → 本周复盘 + 下周预判
+```
+
+预跑只采集、不说话；播报只读预跑结果，不重跑采集。这样重活放在不打扰人的时间，播报快且稳。
+
+## 仓库结构
 
 ```
 auto-newmedia-agents/
-├── AGENTS.md               setup steps for the agent
-├── bootstrap.md            the one sentence to send your bot
+├── AGENTS.md               给 Agent 的安装说明
+├── bootstrap.md            发给 Bot 的一句话
 ├── assets/icon.png
 ├── bots/auto-topic-monitor/
-│   ├── README.md           full SOP
-│   ├── job.md              job description
-│   ├── routines.md         schedule
-│   ├── check.md            acceptance checklist
-│   ├── skills/auto-topic-monitor/SKILL.md
-│   ├── skills/douyin-comments/   optional: full Douyin comment section
-│   └── templates/          report, breakdown and topic-ledger templates
-├── lib/runlog/             optional run log
-├── templates/              shared ledger formats
-└── tests/                  dry-run checks that need no key
+│   ├── README.md           完整 SOP
+│   ├── job.md              岗位说明
+│   ├── routines.md         例程表
+│   ├── check.md            验收清单
+│   ├── skills/
+│   │   ├── auto-topic-monitor/SKILL.md   核心技能卡
+│   │   └── douyin-comments/SKILL.md      可选：抓完整抖音评论区
+│   └── templates/          播报、内容拆解、选题台账模板
+├── lib/runlog/             可选：运行日志
+├── templates/              通用台账格式
+└── tests/                  不需要 Key 的演练测试
 ```
 
-## Data sources
+## 数据从哪来
 
-The automotive topic monitor uses public web pages plus your logged-in browser: automaker sites, Autohome, Dongchedi, 12365auto, MIIT, and Douyin/Xiaohongshu through your own session. **No API key and no paid data service required.** The optional `douyin-comments` skill also runs in your own logged-in browser.
+汽车选题监控用公开网页 + 你已登录的浏览器：
 
-## Optional: run log
+- 公开页面：品牌官网、汽车之家、懂车帝、车质网、工信部
+- 登录态读取：抖音、小红书（用你自己的账号环境）
+- 抖音评论区：`douyin-comments` 技能，在你自己的浏览器里运行
 
-For a sturdier setup where you can trace what went wrong, add the [run log module](lib/runlog/README.md). It records whether each routine ran, whether it succeeded, what you approved, and when a rule was changed. It is off by default and only writes local files.
+**不需要 API Key，也不需要任何付费数据服务。** 出现验证码就停下来叫你，不代点。
 
-## License
+## 常见问题
 
-MIT. This project is adapted from [saas-growth-agents](https://github.com/Pluviobyte/saas-growth-agents) by Pluviobyte; see [NOTICE.md](NOTICE.md).
+**Q：需要 AIsa 或别的数据接口吗？**
+不需要。这个仓库已经去掉所有付费数据层，默认零 API 成本。
+
+**Q：要装什么软件？**
+Python 3.10+。仓库自带的演练测试只用标准库。
+
+**Q：用哪个 Agent？**
+Grok Bot、Muse、Dot、Hermes、OpenClaw、Claude Code、Codex 都可以。只要它能跑终端命令、能存长期指令。
+
+**Q：它会自己发内容吗？**
+不会。它只负责发现、整理、起草；发布、投放、删除都由你决定。
+
+**Q：数据准不准？**
+每条播报都带来源和日期；传闻会标「未证实」；拿不到数据会直说，不编。
+
+## 可选：运行日志
+
+想让系统更稳、出了问题能查到原因，可以加装 [运行日志模块](lib/runlog/README.md)。它记录每个例程有没有跑、成没成功、你批准过什么、规则什么时候改过。默认关闭，只在本地写文件。
+
+## 许可证与出处
+
+MIT。本项目改编自 Pluviobyte 的 [saas-growth-agents](https://github.com/Pluviobyte/saas-growth-agents)，原作者信息见 [NOTICE.md](NOTICE.md)。

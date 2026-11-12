@@ -9,15 +9,3 @@
 ```
 
 不需要 API Key。抖音、小红书用你自己已登录的浏览器。
-
-## English
-
-Create a new bot (Grok Bot, Muse, Dot, Hermes or OpenClaw all work) and send it the sentence below. It reads the repo, asks you a few questions, sets itself up and does one run for you to check.
-
-**Automotive topic monitor**
-
-```text
-Read AGENTS.md in https://github.com/mingginwan/auto-newmedia-agents and set yourself up as the auto-topic-monitor (automotive topic monitor) bot. Ask me one question at a time.
-```
-
-No API key required. Douyin and Xiaohongshu use your own logged-in browser.
