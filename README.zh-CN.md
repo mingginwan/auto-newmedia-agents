@@ -4,31 +4,31 @@
 
 # auto-newmedia-agents
 
-### 出海 SaaS 的增长重复活，交给 Agent 每天跑。
+### 汽车新媒体每日选题监控，交给 Agent 每天跑。
 
-**找新词、按词找站、查竞品外链、提交导航站、把刷到的好内容拆进知识库。**<br>
+**每天盯新车、竞品、政策、用户声音、爆款内容五类线索，三次分级播报；刷到好内容丢一个链接，自动拆解归档进知识库。**<br>
 这些活每天都要做、步骤固定，最适合固化成 SOP 交给 Agent。<br>
 新建一个 Bot，发一句话，它会读这个仓库、问你几个问题，然后把自己装好。
 
-[![Stars](https://img.shields.io/github/stars/mingginwan/auto-newmedia-agents?style=flat&color=111111&cacheSeconds=3600)](https://github.com/mingginwan/auto-newmedia-agents/stargazers) [![License](https://img.shields.io/badge/license-MIT-111111)](LICENSE) [![Python](https://img.shields.io/badge/python_3-stdlib_only-111111?logo=python&logoColor=white)](lib/aisa/client.py) [![Data](https://img.shields.io/badge/data-AIsa-F26B1D)](https://go.aisa.one/rain)<br>
+[![Stars](https://img.shields.io/github/stars/mingginwan/auto-newmedia-agents?style=flat&color=111111&cacheSeconds=3600)](https://github.com/mingginwan/auto-newmedia-agents/stargazers) [![License](https://img.shields.io/badge/license-MIT-111111)](LICENSE) [![Python](https://img.shields.io/badge/python_3-stdlib_only-111111?logo=python&logoColor=white)](lib/aisa/client.py)<br>
 [![Grok Bot](https://img.shields.io/badge/Grok_Bot-推荐-000000?logo=x&logoColor=white)](https://grok.com/refer/bot?code=NASHTX8NMYH3) ![Muse](https://img.shields.io/badge/Muse-333333) ![Dot](https://img.shields.io/badge/Dot-333333) ![Hermes](https://img.shields.io/badge/Hermes-333333) ![OpenClaw](https://img.shields.io/badge/OpenClaw-333333) ![Claude Code](https://img.shields.io/badge/Claude_Code-D97757?logo=claude&logoColor=white) ![Codex](https://img.shields.io/badge/Codex-111111)
 
-**[三分钟上手](#三分钟上手)** &nbsp;·&nbsp; **[三个 Bot](#三个-bot)** &nbsp;·&nbsp; **[发给 Bot 的一句话](bootstrap.md)** &nbsp;·&nbsp; **[AGENTS.md](AGENTS.md)** &nbsp;·&nbsp; **[Grok Bot 免费 14 天](https://grok.com/refer/bot?code=NASHTX8NMYH3)** &nbsp;·&nbsp; [English](README.md) · **简体中文**
+**[三分钟上手](#三分钟上手)** &nbsp;·&nbsp; **[Bot 列表](#bot-列表)** &nbsp;·&nbsp; **[发给 Bot 的一句话](bootstrap.md)** &nbsp;·&nbsp; **[AGENTS.md](AGENTS.md)** &nbsp;·&nbsp; **[Grok Bot 免费 14 天](https://grok.com/refer/bot?code=NASHTX8NMYH3)** &nbsp;·&nbsp; [English](README.md) · **简体中文**
 
 <br>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/flow-dark.zh-CN.svg">
-  <img alt="数据流：数据源经 AIsa 进入三条脚本流水线（新词监控、出海站点运营、社媒分析），脚本只做采集、去重、记账这些确定的事；Agent 负责分析、提取、核实、写播报，再推送给你做决定。状态写进文件和账本，每次开工先读；花钱、发送、删除都要你点头。" src="assets/flow-light.zh-CN.svg" width="900">
+  <img alt="数据流：数据源进入汽车选题监控流水线（新车、竞品、政策、用户声音、爆款内容五类线索），脚本只做采集、去重、记账这些确定的事；Agent 负责分析、提取、核实、写播报，再推送给你做决定。状态写进文件和账本，每次开工先读；花钱、发送、删除都要你点头。" src="assets/flow-light.zh-CN.svg" width="900">
 </picture>
 
 </div>
 
 <br>
 
-这里是作者自己做出海工具站时在跑的那几套 SOP 和脚本。任何能跑终端命令、能存长期指令的 Agent 都能用。
+这个 Fork 面向汽车新媒体团队：主推汽车选题监控，把每日选题会前的线索收集、分级播报和爆款拆解归档交给 Agent。原版出海增长 Bot 保留在下面，供参考。任何能跑终端命令、能存长期指令的 Agent 都能用。
 
-> **从 douyin-comments 来的？** 这个仓库就是原来的 douyin-comments，现在并进了整套出海增长系统。抖音评论区 skill 一行没少，挪到了社媒分析包里的 [`bots/social-kb/douyin-comments/`](bots/social-kb/douyin-comments/SKILL.md)，重新安装方法见[社媒分析包](bots/social-kb/README.zh-CN.md#以前装过-douyin-comments)。
+> **从 douyin-comments 来的？** 抖音评论区 skill 现在放在社媒分析包里的 [`bots/social-kb/douyin-comments/`](bots/social-kb/douyin-comments/SKILL.md)，用法和以前一样。重新安装方法见[社媒分析包](bots/social-kb/README.zh-CN.md#以前装过-douyin-comments)。
 
 **这套系统只有三条原则：**
 
@@ -36,16 +36,21 @@
 2. **Agent 做判断**：读脚本给的材料去分析、提取、核实、写播报。拿不到数据就直说，不编。
 3. **你做决定**：Agent 只推结论；花钱、对外发送、删除都要你点头。你每次纠正它，都变成一条新规矩写回技能里。
 
-## 三个 Bot
+## Bot 列表
 
-> **本 Fork 新增：** [`bots/auto-topic-monitor/`](bots/auto-topic-monitor/README.md) 汽车选题监控，把新词监控和社媒分析的 SOP 改成了汽车新媒体每天找选题、拆爆款、存知识库的流程。
+### 主推：汽车选题监控
+
+| Bot | 你做什么 | 它做什么 |
+|---|---|---|
+| [汽车选题监控](bots/auto-topic-monitor/README.md) | 什么都不用做（可选：给品牌和价位带） | 每天早中晚三次播报汽车行业值得拍的新鲜事：新车、竞品动作、政策、用户声音、爆款内容。按 A/B/C 分级，维护选题台账，把对标内容拆解归档进知识库。**用公开网页和你已登录的浏览器，不要求 AIsa Key。** |
+
+### 原版出海 Bot（保留参考）
 
 | Bot | 你做什么 | 它做什么 |
 |---|---|---|
 | [新词监控](bots/newterm/job.md) | 什么都不用做 | 每天早中晚三次播报新出现、可被搜索的词：AI 新产品、新模型、新梗、新模板。词源包括 Google Trends、竞品 sitemap、导航站新上架、Product Hunt、GitHub Trending、Reddit、TikTok |
 | [出海站点运营](bots/site-ops/job.md) | 给词、给产品 | 按词找出所有在抢这个词的站，查它们的 DR 和外链，每天盯自有站指标，按规则提交免费导航站，全部记台账 |
 | [社媒分析包](bots/social-kb/README.zh-CN.md) | 刷到好内容，丢一个链接 | 取原文（X、抖音、小红书、YouTube、公众号、网页）→ 整理 → 对照你的工作流提取「能改进你 SOP 的部分」→ 按主题存进知识库；抖音还能抓完整评论区，看用户都在问什么 |
-| [汽车选题监控](bots/auto-topic-monitor/README.md) | 什么都不用做（可选：给品牌和价位带） | 每天早中晚三次播报汽车行业值得拍的新鲜事：新车、竞品动作、政策、用户声音、爆款内容。按 A/B/C 分级，维护选题台账，把对标内容拆解归档进知识库 |
 
 另外附带一个和出海无关的 [交易雷达](extras/trade-radar/job.md)：盯价格异动和突发事件，分析后推送，**只分析、不下单**。
 
@@ -64,16 +69,22 @@
 2. 把 [bootstrap.md](bootstrap.md) 里对应的那句话发给它，比如：
 
    ```text
-   读 https://github.com/mingginwan/auto-newmedia-agents 的 AGENTS.md，按它把你自己装成 newterm（新词监控）Bot。一次只问我一个问题。
+   读 https://github.com/mingginwan/auto-newmedia-agents 的 AGENTS.md，按它把你自己装成 auto-topic-monitor（汽车选题监控）Bot。一次只问我一个问题。
    ```
 
-3. 它会请你把 [AIsa](https://go.aisa.one/rain) 的 Key 放进保险库，然后手动跑一遍给你看，你满意了它再设成例程。
+3. 汽车选题监控默认用公开网页和你已登录的浏览器，不用 AIsa Key 就能开跑。它会先手动跑一遍给你看，你满意了再设成例程。原版出海 Bot 仍使用 [AIsa](https://go.aisa.one/rain)，见下方说明。
 
 整个过程就是「**做一次 → 改到满意 → 存成技能 → 设成例程**」。
 
 ## 数据从哪来
 
-所有外部数据都走 [AIsa](https://go.aisa.one/rain)：一个 Key 调几千个接口，按次计费，支持 MCP。这里用到的有：
+### 汽车选题监控（本 Fork 主推）
+
+公开网页 + 你已登录的浏览器：品牌官网、汽车之家、懂车帝、车质网、工信部等公开页面，抖音/小红书用你自己的登录态读取。**不要求 AIsa Key，可以先零 API 成本跑起来。**
+
+### 原版出海 Bot（保留参考）
+
+所有外部数据走 [AIsa](https://go.aisa.one/rain)：一个 Key 调几千个接口，按次计费，支持 MCP。这里用到的有：
 
 - **SEO**：DataForSEO 的 SERP 和 Google Trends，Ahrefs
 - **社交**：Twitter，TikHub（抖音、小红书），DataForSEO YouTube（字幕、视频信息）

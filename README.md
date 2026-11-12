@@ -4,13 +4,13 @@
 
 # auto-newmedia-agents
 
-### Hand your SaaS growth chores to an agent that runs them every day.
+### Daily automotive new-media topic monitoring, run by an agent.
 
-**Spot new search terms, find who ranks for them, check competitor backlinks, submit to directories, and file good posts into a knowledge base.**<br>
+**Track new models, competitor moves, policy, owner complaints and viral content in five daily sweeps; drop in a link and get it broken down and filed into a knowledge base.**<br>
 These jobs repeat daily and follow fixed steps, which makes them perfect SOPs for an agent.<br>
 Create a bot, send it one sentence, and it reads this repo, asks you a few questions, and sets itself up.
 
-[![Stars](https://img.shields.io/github/stars/mingginwan/auto-newmedia-agents?style=flat&color=111111&cacheSeconds=3600)](https://github.com/mingginwan/auto-newmedia-agents/stargazers) [![License](https://img.shields.io/badge/license-MIT-111111)](LICENSE) [![Python](https://img.shields.io/badge/python_3-stdlib_only-111111?logo=python&logoColor=white)](lib/aisa/client.py) [![Data](https://img.shields.io/badge/data-AIsa-F26B1D)](https://go.aisa.one/rain)<br>
+[![Stars](https://img.shields.io/github/stars/mingginwan/auto-newmedia-agents?style=flat&color=111111&cacheSeconds=3600)](https://github.com/mingginwan/auto-newmedia-agents/stargazers) [![License](https://img.shields.io/badge/license-MIT-111111)](LICENSE) [![Python](https://img.shields.io/badge/python_3-stdlib_only-111111?logo=python&logoColor=white)](lib/aisa/client.py)<br>
 [![Grok Bot](https://img.shields.io/badge/Grok_Bot-recommended-000000?logo=x&logoColor=white)](https://grok.com/refer/bot?code=NASHTX8NMYH3) ![Muse](https://img.shields.io/badge/Muse-333333) ![Dot](https://img.shields.io/badge/Dot-333333) ![Hermes](https://img.shields.io/badge/Hermes-333333) ![OpenClaw](https://img.shields.io/badge/OpenClaw-333333) ![Claude Code](https://img.shields.io/badge/Claude_Code-D97757?logo=claude&logoColor=white) ![Codex](https://img.shields.io/badge/Codex-111111)
 
 **[Quick start](#quick-start)** &nbsp;·&nbsp; **[The bots](#the-bots)** &nbsp;·&nbsp; **[One-line setup](bootstrap.md)** &nbsp;·&nbsp; **[AGENTS.md](AGENTS.md)** &nbsp;·&nbsp; **[Grok Bot free for 14 days](https://grok.com/refer/bot?code=NASHTX8NMYH3)** &nbsp;·&nbsp; **English** · [简体中文](README.zh-CN.md)
@@ -19,16 +19,16 @@ Create a bot, send it one sentence, and it reads this repo, asks you a few quest
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/flow-dark.svg">
-  <img alt="Data flow: sources go through AIsa into three script pipelines (new-term radar, site ops, social analysis). Scripts only do deterministic work such as collecting, deduping and logging. The agent analyzes, verifies and reports, then pushes to you to decide. State lives in files and ledgers that are read before every run. Spending, sending and deleting all need your OK." src="assets/flow-light.svg" width="900">
+  <img alt="Data flow: sources feed the automotive topic monitor pipeline (new models, competitor moves, policy, owner complaints, viral content). Scripts only do deterministic work such as collecting, deduping and logging. The agent analyzes, verifies and reports, then pushes to you to decide. State lives in files and ledgers that are read before every run. Spending, sending and deleting all need your OK." src="assets/flow-light.svg" width="900">
 </picture>
 
 </div>
 
 <br>
 
-These are the SOPs and scripts the author runs for their own SaaS tools aimed at overseas markets. Any agent that can run terminal commands and keep long-lived instructions can use them.
+This fork is built for Chinese automotive new-media teams. The main bot is the automotive topic monitor: it replaces the daily topic meeting's legwork with agent-collected signals, graded reports, a topic ledger and a reference-content knowledge base. The original SaaS growth bots are kept below for reference. Any agent that can run terminal commands and keep long-lived instructions can use them.
 
-> **Coming from douyin-comments?** This repo *is* the old douyin-comments, now merged into the full growth system. The Douyin comments skill is unchanged and lives in the social analysis pack at [`bots/social-kb/douyin-comments/`](bots/social-kb/douyin-comments/SKILL.md). See [how to reinstall](bots/social-kb/README.md#installed-douyin-comments-before).
+> **Coming from douyin-comments?** The Douyin comments skill still lives in the social analysis pack at [`bots/social-kb/douyin-comments/`](bots/social-kb/douyin-comments/SKILL.md), unchanged. See [how to reinstall](bots/social-kb/README.md#installed-douyin-comments-before).
 
 **The whole system runs on three rules:**
 
@@ -38,14 +38,19 @@ These are the SOPs and scripts the author runs for their own SaaS tools aimed at
 
 ## The bots
 
-> **Fork addition:** this fork adds an automotive topic monitor at [`bots/auto-topic-monitor/`](bots/auto-topic-monitor/README.md). It adapts the new-term radar and social analysis SOPs to Chinese automotive new-media topic selection.
+### Main bot: automotive topic monitor
+
+| Bot | What you do | What it does |
+|---|---|---|
+| [Automotive topic monitor](bots/auto-topic-monitor/README.md) | Nothing (or your brand and price band) | Three reports a day on what's worth filming in the Chinese auto market: new models, competitor moves, policy, owner complaints, and viral content. Grades A/B/C, keeps a topic ledger, and files reference content into a knowledge base. **Uses public web pages and your logged-in browser; no AIsa key required.** |
+
+### Original SaaS growth bots (kept for reference)
 
 | Bot | What you do | What it does |
 |---|---|---|
 | [New-term radar](bots/newterm/job.md) | Nothing | Three reports a day on newly searchable terms: new AI products, models, memes, templates. Sources include Google Trends, competitor sitemaps, new directory listings, Product Hunt, GitHub Trending, Reddit and TikTok |
 | [Site ops](bots/site-ops/job.md) | Give it keywords and your product | Finds every site competing for a keyword, checks their DR and backlinks, tracks your own site's metrics daily, submits to free directories by the rules, and logs everything |
 | [Social analysis pack](bots/social-kb/README.md) | Drop a link when you see something good | Fetches the original (X, Douyin, RedNote, YouTube, WeChat, any web page) → summarizes → extracts "what could improve your SOPs" against your own workflow → files it by topic. For Douyin it can also pull the full comment section |
-| [Automotive topic monitor](bots/auto-topic-monitor/README.md) | Nothing (or your brand and price band) | Three reports a day on what's worth filming in the Chinese auto market: new models, competitor moves, policy, owner complaints, and viral content. Grades A/B/C, keeps a topic ledger, and files reference content into a knowledge base |
 
 Plus an unrelated extra, [Trade radar](extras/trade-radar/job.md): watches price moves and breaking events and pushes an analysis. **It analyzes only and never places orders.**
 
@@ -64,10 +69,10 @@ Plus an unrelated extra, [Trade radar](extras/trade-radar/job.md): watches price
 2. Send it the matching sentence from [bootstrap.md](bootstrap.md), for example:
 
    ```text
-   Read AGENTS.md in https://github.com/mingginwan/auto-newmedia-agents and set yourself up as the newterm (new-term radar) bot. Ask me one question at a time.
+   Read AGENTS.md in https://github.com/mingginwan/auto-newmedia-agents and set yourself up as the auto-topic-monitor (automotive topic monitor) bot. Ask me one question at a time.
    ```
 
-3. It asks you to put your [AIsa](https://go.aisa.one/rain) key in its vault, does one run by hand to show you, and only turns it into a routine once you're happy.
+3. The automotive topic monitor uses public web pages and your logged-in browser by default, so no AIsa key is required to start. It does one run by hand to show you, and only turns it into a routine once you're happy. The original SaaS bots still use [AIsa](https://go.aisa.one/rain); see below.
 
 The whole process is **do it once → tweak until it's right → save as a skill → schedule as a routine**.
 
@@ -75,7 +80,13 @@ The job descriptions and SOP docs inside the repo are written in Chinese. Agents
 
 ## Where the data comes from
 
-All external data goes through [AIsa](https://go.aisa.one/rain): one key for thousands of APIs, pay per call, with MCP support. This repo uses:
+### Automotive topic monitor (this fork's main bot)
+
+Public web pages plus your logged-in browser: automaker sites, Autohome, Dongchedi, 12365auto, MIIT, and Douyin/Xiaohongshu through your own session. **No AIsa key required, so you can start at zero API cost.**
+
+### Original SaaS bots (kept for reference)
+
+All external data for these bots goes through [AIsa](https://go.aisa.one/rain): one key for thousands of APIs, pay per call, with MCP support. This repo uses:
 
 - **SEO**: DataForSEO SERP and Google Trends, Ahrefs
 - **Social**: Twitter, TikHub (Douyin, RedNote), DataForSEO YouTube (transcripts, video info)
